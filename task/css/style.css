@@ -1,0 +1,233 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Sora", system-ui, sans-serif;
+  color: #ffffff;
+  background: linear-gradient(160deg, #0f1e3d, #1b3a6b) fixed;
+  overflow-x: hidden;
+}
+
+body.sunny  { background: linear-gradient(160deg, #1d4ed8, #38bdf8 55%, #fbbf77) fixed; }
+body.cloudy { background: linear-gradient(160deg, #2b3647, #5b6b82) fixed; }
+body.rainy  { background: linear-gradient(160deg, #0b1b2e, #1f4a5e) fixed; }
+body.snowy  { background: linear-gradient(160deg, #3b5b7e, #9db9d6) fixed; }
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -180px;
+  right: -140px;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 214, 120, 0.55), rgba(255, 214, 120, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 56px 20px;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+
+}
+h1:hover{
+  transform: scale(1.1);
+}
+
+.search {
+  display: flex;
+  gap: 10px;
+  flex: 1 1 320px;
+  max-width: 440px;
+}
+
+input {
+  flex: 1;
+  padding: 15px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  font: inherit;
+  outline: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: #ffffff;
+}
+
+button {
+  width: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  font-size: 1.15rem;
+  transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.26);
+  transform: scale(1.06);
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 2px solid #ffd67a;
+  outline-offset: 3px;
+}
+
+.status {
+  min-height: 1.4em;
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.status.error {
+  color: #ffb4b4;
+}
+
+.place {
+  margin: 36px 0 26px;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+.place small {
+  display: block;
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 28px;
+  padding: 30px 26px;
+  text-align: center;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s, background 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.card.today {
+  background: rgba(255, 255, 255, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.day {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.date {
+  margin-top: 2px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  margin: 14px 0 2px;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.25));
+}
+
+.temp {
+  font-size: 3.6rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.temp-min {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.cond {
+  margin: 16px 0 20px;
+  font-weight: 600;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.meta b {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+@media (max-width: 520px) {
+  .app {
+    padding: 36px 16px;
+  }
+
+  .place {
+    font-size: 2.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
